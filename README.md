@@ -1,6 +1,7 @@
 # Selfkey Unclaimed Registry Contract
 
 ## Overview
+Unclaimed rewards side-chain registry
 
 ## Development
 
