@@ -154,10 +154,10 @@ contract SelfkeyUnclaimedRegistry is Initializable, OwnableUpgradeable, ISelfkey
         // Verify enough balance exists
         require(balanceOf(_account) >= _amount, "Not enough balance");
 
-        string memory _scope = 'selfkey.self.claim';
+        string memory _scope = 'selfkey:unclaimed';
 
         // Verify payload
-        authorizationContract.authorize(address(this), _account, _amount, 'selfkey.self.claim', _param, _timestamp, _signer, signature);
+        authorizationContract.authorize(address(this), _account, _amount, 'selfkey:unclaimed', _param, _timestamp, _signer, signature);
 
         // Add to the mintable Registry
         mintableRegistryContract.register(_account, _amount, _scope, 1, _signer);

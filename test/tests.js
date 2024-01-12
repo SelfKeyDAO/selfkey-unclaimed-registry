@@ -315,7 +315,7 @@ describe("Unclaimed Registry Tests", function () {
             const _from = contract.address;
             const _to = addr2.address;
             const _amount = 100;
-            const _scope = 'selfkey.self.claim';
+            const _scope = 'selfkey:unclaimed';
             const _relying_party = rp.address;
             const _signer = addr1.address;
             const _timestamp = await time.latest();
@@ -330,7 +330,7 @@ describe("Unclaimed Registry Tests", function () {
 
             await expect(contract.connect(addr2).selfClaim(_to, _amount, _param, _timestamp, signer.address, signature, { from: addr2.address }))
                 .to.emit(contract, 'ClaimRegistered')
-                .withArgs(addr2.address, 100, 'selfkey.self.claim', rp.address);
+                .withArgs(addr2.address, 100, 'selfkey:unclaimed', rp.address);
 
             // Check if amount is in mintable registry
             expect(await mintableContract.balanceOf(_to)).to.equal(_amount);
@@ -344,7 +344,7 @@ describe("Unclaimed Registry Tests", function () {
             const _from = contract.address;
             const _to = addr2.address;
             const _amount = 100;
-            const _scope = 'selfkey.self.claim';
+            const _scope = 'selfkey:unclaimed';
             const _relying_party = rp.address;
             const _signer = addr1.address;
             const _timestamp = await time.latest();

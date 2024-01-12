@@ -7,11 +7,13 @@ async function main() {
     // Mumbai address
     const proxyAddress = "0xb270C5aE4c55Ee3EEC2607ee09570b67150EC59E";
 
-    const contractFactory = await hre.ethers.getContractFactory("SelfkeyUnclaimedRegistry");
-    const contract = await upgrades.upgradeProxy(proxyAddress, contractFactory, { timeout: 500000 });
-    await contract.deployed();
+    const contractFactory = await hre.ethers.getContractFactory("SelfkeyUnclaimedRegistryV1");
+    console.log('Implementation address: ' + await upgrades.erc1967.getImplementationAddress(proxyAddress));
+    console.log('Admin address: ' + await upgrades.erc1967.getAdminAddress(proxyAddress));
 
-    console.log("Deployed contract address:", contract.address);
+    const contract = await upgrades.forceImport(proxyAddress, contractFactory, { kind: 'transparent' });
+
+    console.log("Done", contract);
 
     // INFO: verify contract after deployment
     // npx hardhat verify --network mumbai 0xb270C5aE4c55Ee3EEC2607ee09570b67150EC59E
