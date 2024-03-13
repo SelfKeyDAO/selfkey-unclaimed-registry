@@ -25,10 +25,8 @@ or with code coverage
     npx hardhat coverage
 
 
-
 ## Contributing
-
 Please see the [contributing notes](CONTRIBUTING.md).
 
-
-## Team
+## Copyright
+Copyright SelfKey DAO Foundation 2024. All rights reserved.
